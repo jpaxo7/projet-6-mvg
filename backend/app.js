@@ -1,6 +1,9 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+
 const booksRoutes = require("./routes/books_route");
+const userRoutes = require("./routes/users_route");
 
 mongoose
   .connect(
@@ -28,5 +31,6 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 app.use("/api/books_route", booksRoutes);
+app.use("/api/auth", userRoutes);
 
 module.exports = app;
