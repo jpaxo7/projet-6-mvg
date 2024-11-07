@@ -1,16 +1,17 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 const booksRoutes = require("./routes/books_route");
 const userRoutes = require("./routes/users_route");
 const path = require("path");
 
 mongoose
-  .connect(
-    "mongodb+srv://jeanpierresabah:YF3J6xXa4KqqQGZd@cluster0.0oa9e.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
-    { useNewUrlParser: true, useUnifiedTopology: true }
-  )
+  .connect(process.env.MONGO, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("Connexion à MongoDB réussie !"))
   .catch(() => console.log("Connexion à MongoDB échouée !"));
 
